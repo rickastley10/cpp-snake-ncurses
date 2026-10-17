@@ -34,6 +34,8 @@ int main() {
     int pointer=0;
     int level=0;
 
+    int nocolision = 0;
+
     char input;
 
     srand(time(NULL));
@@ -58,6 +60,9 @@ int main() {
         }
         if(input=='d' && direction!= 4){
             direction=2;
+        }
+        if(input==27){
+            break;
         }
 
         
@@ -95,25 +100,25 @@ int main() {
         for(int i=0; i<=level; i++){
             if(segment_x[i] == player_x && segment_y[i] == player_y){
                 for(int i=0; i<=level; i++){
-                 segment_x[0]=player_x;
+                segment_x[0]=player_x;
                 segment_y[0]=player_y;
                 }
                 
 
                 player_x=5;
-                 player_y=5;
+                player_y=5;
 
-                 apple_x=7;
-                 apple_y=7;
+                apple_x=7;
+                apple_y=7;
 
-                 direction=2;
+                direction=2;
 
-                 segment_x[400];
-                 segment_y[400];
+                segment_x[400];
+                segment_y[400];
                 
 
-                 pointer=0;
-                 level=0;
+                pointer=0;
+                level=0;
                 
                 break;
             }
@@ -128,13 +133,27 @@ int main() {
         
 
 
-
+        nocolision=0;
         if(player_x==apple_x && player_y==apple_y){
+            while (nocolision==0)
+            {
+                apple_x = (rand() % 19) + 1;
+                apple_y = (rand() % 10) + 1;
+
+                if(apple_x != player_x && apple_y != player_y){
+                    for(int i=0; i <=level; i++){
+                        if(apple_x != segment_x[i] && apple_y != segment_y[i]){
+                            nocolision=1;
+                            break;
+                        }
+                    }
+                }
+                
+            }
+            
+            
             level++;
             segment_x[level]=999;  // offscreen
-            apple_x = (rand() % 19) + 1;
-            apple_y = (rand() % 10) + 1;
-
         }
 
         
