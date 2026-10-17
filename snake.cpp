@@ -16,14 +16,13 @@ int main() {
 
 
     // 3. Render content to the frame buffer (y, x coordinates)
-    int row = 20;
-    int col = 20;
 
-    int player_x=10;
-    int player_y=10;
 
-    int apple_x=20;
-    int apple_y=20;
+    int player_x=5;
+    int player_y=5;
+
+    int apple_x=7;
+    int apple_y=7;
 
     int direction=2;
 
@@ -39,23 +38,25 @@ int main() {
 
     srand(time(NULL));
 
-    mvprintw(row, col, "Hello, World from Ncurses C++!");
+
     nodelay(stdscr, TRUE);
     
     while (1==1)
     {   
+
+        //  LOGIC
         clear();
         input = getch();
-        if(input=='w'){
+        if(input=='w' && direction!= 3){
             direction=1;
         }
-        if(input=='a'){
+        if(input=='a' && direction!= 2){
             direction=4;
         }
-        if(input=='s'){
+        if(input=='s' && direction!= 1){
             direction=3;
         }
-        if(input=='d'){
+        if(input=='d' && direction!= 4){
             direction=2;
         }
 
@@ -72,6 +73,25 @@ int main() {
         if(direction==4){
             player_x-=1;
         }
+
+
+
+        if(player_x>19){
+            player_x=1;
+        }
+        if(player_y>10){
+            player_y=1;
+        }
+        if(player_x<1){
+            player_x=19;
+        }
+        if(player_y<1){
+            player_y=10;
+        }
+
+
+
+
         for(int i=0; i<=level; i++){
             if(segment_x[i] == player_x && segment_y[i] == player_y){
                 for(int i=0; i<=level; i++){
@@ -80,11 +100,11 @@ int main() {
                 }
                 
 
-                player_x=10;
-                 player_y=10;
+                player_x=5;
+                 player_y=5;
 
-                 apple_x=20;
-                 apple_y=20;
+                 apple_x=7;
+                 apple_y=7;
 
                  direction=2;
 
@@ -105,19 +125,31 @@ int main() {
             pointer=0;
         }
 
+        
 
 
 
         if(player_x==apple_x && player_y==apple_y){
             level++;
-            apple_x = (rand() % 20) + 1;
-            apple_y = (rand() % 20) + 1;
+            segment_x[level]=999;  // offscreen
+            apple_x = (rand() % 19) + 1;
+            apple_y = (rand() % 10) + 1;
 
         }
 
         
+        //          RENDER
 
 
+
+        for(int x=0; x<=20;x++){
+            mvprintw(0, x, "-");
+            mvprintw(11, x, "-");
+        }
+        for(int y=0; y<=11;y++){
+            mvprintw(y, 0, "|");
+            mvprintw(y, 20, "|");
+        }
 
 
 
