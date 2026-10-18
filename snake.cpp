@@ -38,6 +38,8 @@ int main() {
 
     char input;
 
+    int ms = 100;
+
     srand(time(NULL));
 
 
@@ -61,6 +63,16 @@ int main() {
         if(input=='d' && direction!= 4){
             direction=2;
         }
+
+
+        if(input=='1'){
+            ms=100;
+        }
+        if(input=='2'){
+            ms=200;
+        }
+
+
         if(input==27){
             break;
         }
@@ -156,9 +168,11 @@ int main() {
             segment_x[level]=999;  // offscreen
         }
 
+
+
+
         
         //          RENDER
-
 
 
         for(int x=0; x<=20;x++){
@@ -179,7 +193,7 @@ int main() {
         mvprintw(apple_y, apple_x, "Q");
         refresh();
 
-        napms(100);
+        napms(ms);
     }
     
 
