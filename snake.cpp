@@ -209,6 +209,9 @@ int main() {
         }
         mvprintw(player_y, player_x, "@");
         mvprintw(apple_y, apple_x, "Q");
+
+        mvprintw(12, 10, "%d",level);
+
         refresh();
 
         napms(ms);
