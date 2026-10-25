@@ -334,14 +334,13 @@ for(int i=-20;i<=0;i++){
     }
     
 
+    clear();
+    mvprintw(3,3,"EXITING");
+    refresh();   
+    napms(500);
+       
 
-    // 4. Flush the changes from memory buffer to the physical terminal screen
-    refresh();            
 
-    // 5. Wait for a single keystroke before closing
-    getch();              
-
-    // 6. Deallocate memory and restore the terminal to its normal state
     endwin();             
     
     return 0;
