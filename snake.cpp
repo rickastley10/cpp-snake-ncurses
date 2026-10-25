@@ -194,21 +194,21 @@ int main() {
 
 
         for(int x=0; x<=20;x++){
-            mvprintw(0, x, "-");
-            mvprintw(11, x, "-");
+            mvaddch(0, x, ACS_CKBOARD);
+            mvaddch(11, x, ACS_CKBOARD);
         }
         for(int y=0; y<=11;y++){
-            mvprintw(y, 0, "|");
-            mvprintw(y, 20, "|");
+            mvaddch(y, 0, ACS_CKBOARD);
+            mvaddch(y, 20, ACS_CKBOARD);
         }
 
 
 
         for(int i=0; i<=level; i++){
-            mvprintw(segment_y[i], segment_x[i], "0");
+            mvaddch(segment_y[i], segment_x[i], '0');
         }
-        mvprintw(player_y, player_x, "@");
-        mvprintw(apple_y, apple_x, "Q");
+        mvaddch(player_y, player_x, '@');
+        mvaddch(apple_y, apple_x, 'a');
 
         mvprintw(12, 10, "%d",level);
 
